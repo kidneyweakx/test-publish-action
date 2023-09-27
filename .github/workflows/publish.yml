@@ -15,8 +15,8 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://npm.pkg.github.com'
+          scope: '@kidneyweakx'
       - run: npm ci
-      - run: npm run build:console
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,10 +29,10 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
+          scope: '@hollowleaf'
       - run: |
-          sed -i 's/"name": "test-publish"/"name": "test-publish-gogogo"/' package.json
+          sed -i 's/"name": "@kidneyweakx\/test-publish-action"/"name": "@hollowleaf\/test-publish-action"/' package.json
           npm install
-      - run: npm run build:console
-      - run: npm publish
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
